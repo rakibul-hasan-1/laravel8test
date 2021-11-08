@@ -13,6 +13,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+Route::get('/','App\Http\Controllers\HomeController@index')->name('home');
+Route::get('/add-home','App\Http\Controllers\HomeController@addhome')->name('add.home');
+Route::post('/savehome','App\Http\Controllers\HomeController@create')->name('savehome');
+Route::get('/edithome/{home_id}','App\Http\Controllers\HomeController@edit')->name('edithome');
+Route::post('/update/{id}','App\Http\Controllers\HomeController@update')->name('updatehome');
+
