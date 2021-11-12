@@ -7,6 +7,7 @@ use App\Settings;
 use Illuminate\Http\Request;
 use Validator;
 use Session;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -44,6 +45,7 @@ public function addhome(){
             $home->name=$request->name;
             $home->email=$request->email;
             $home->phone=$request->phone;
+            $home->user=Auth::user()->id;
             if($request->category)
             {
             $categoryname='';

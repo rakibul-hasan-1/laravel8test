@@ -22,3 +22,7 @@ Route::post('/savehome','App\Http\Controllers\HomeController@create')->name('sav
 Route::get('/edithome/{home_id}','App\Http\Controllers\HomeController@edit')->name('edithome');
 Route::post('/update/{id}','App\Http\Controllers\HomeController@update')->name('updatehome');
 
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
