@@ -13,7 +13,7 @@
 
                 </div>
                 @if(Auth::check('login')==true)
-                <a class="dropdown-item" href="{{ route('logout') }}"
+                <a class="btn btn btn-outline-primary float-end" href="{{ route('logout') }}"
                     onclick="event.preventDefault();
                                   document.getElementById('logout-form').submit();">
                      {{ __('Logout') }}
@@ -104,4 +104,35 @@
         </div>
     </div>
 </div>
+<div class="text-center ">
+    @php
+    $category='Red';
+    $products=DB::table('homes')->get();
+    foreach ($products as $key => $product) {
+        $productcat=explode(',',$product->category);
+        if($productcat){
+            foreach($productcat as $key=>$pct){
+                if($pct){
+                    if($category==$pct){
+
+
+                        $clkproduct=DB::table('homes')->where('id',$product->id)->get();
+                        @endphp
+                            <ul>
+                                @foreach ($clkproduct as $pcts)
+                                <li>{{$pcts->name}}</li>
+                                <li>{{$pcts->email}}</li>
+                                <li>{{$pcts->phone}}</li>
+                                @endforeach
+                            </ul>
+                        @php
+                    }
+                }
+            }
+        }
+    }
+@endphp
+
+</div>
+
 @endsection
