@@ -106,7 +106,7 @@
 </div>
 <div class="text-center ">
     @php
-    $category='Red';
+    $category='Blue';
     $products=DB::table('homes')->get();
     foreach ($products as $key => $product) {
         $productcat=explode(',',$product->category);
@@ -133,6 +133,21 @@
     }
 @endphp
 
+</div>
+
+<div class="container" style="margin-top:30px; height:500px; border:1px solid black;">
+<p>Select value</p>
+<select class="first" id="first" name="first">
+    <option value="">Select</option>
+    @foreach($offer as $ofr)
+    <option value="{{$ofr->inside}}">{{$ofr->inside}}</option>
+    <option value="{{$ofr->outside}}">{{$ofr->outside}}</option>
+    @endforeach
+</select>
+{{csrf_field()}}
+<br>
+<hr>
+<p class="result" id="result">Result: </p>
 </div>
 
 @endsection

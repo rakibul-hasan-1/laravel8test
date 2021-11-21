@@ -21,7 +21,8 @@ Route::get('/add-home','App\Http\Controllers\HomeController@addhome')->name('add
 Route::post('/savehome','App\Http\Controllers\HomeController@create')->name('savehome');
 Route::get('/edithome/{home_id}','App\Http\Controllers\HomeController@edit')->name('edithome');
 Route::post('/update/{id}','App\Http\Controllers\HomeController@update')->name('updatehome');
-
+Route::post('/fatch','App\Http\Controllers\HomeController@fatch')->name('home.fatch');
+Route::post('/updaterole',['uses'=>'HomeController@doUpdateAccessRole','as'=>'updateaccessrole']);
 
 Auth::routes();
 

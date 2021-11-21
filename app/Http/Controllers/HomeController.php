@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Validator;
 use Session;
 use Illuminate\Support\Facades\Auth;
+use DB;
 
 class HomeController extends Controller
 {
@@ -19,10 +20,31 @@ class HomeController extends Controller
     public function index()
     {
         $homes=Home::all();
-        return view('home', compact('homes'));
+        $offer=DB::table('offer')->get();
+        return view('home', compact('homes','offer'));
     }
 public function addhome(){
     return view('addhome');
+}
+public function fatch(Request $request){
+    $select=$request->get('select');
+    dd($select);
+    $value=$request->get('value');
+    $first=$request->get('first');
+    $data=DB::table('offer')->where($select,$value)->get();
+    $output='<p class="result" id="result">Result: '.$first.'</p>';
+    foreach($data as $row){
+        $output.='<p class="result" id="result">Result: '.$row->first.'</p>';
+    }
+    echo $output;
+}
+public function doUpdateAccessRole($id, Request $request)
+{
+   $place_id = $request->get('id');
+   $Role = UserAccess::findOrFail($id);
+   $Role->user_access_role_id_fk = $id_role;
+   $Role->update($request->all());
+   return 'success';
 }
     /**
      * Show the form for creating a new resource.
